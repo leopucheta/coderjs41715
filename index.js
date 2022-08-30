@@ -13,7 +13,7 @@ if (numero1 > 1000) {
 let texto = prompt ("Hola, Buenos días");
 
 if (texto == "Hola") {
-    console.log("El texto ingresado es: " + texto)
+    alert("El texto ingresado es: " + texto)
 };
 
 // ______Pedir un número por prompt y evaluar si está entre 10 y 50. En caso positivo mostrar un alert.
@@ -33,17 +33,17 @@ let numero3 = Number(prompt ("Ingrese un número base"))
 
 for(let i=0; i < 6; i++){
     
-    console.log(numero3 + i);
+    alert(numero3 + i);
 }
 
 // ______Pedir un texto mediante prompt, concatenar un valor en cada repetición, realizando una salida por cada resultado, hasta que se ingresa “ESC”.
 //____________________________________________________________________________________________ CONSIGNA 5 de CODER !!!!! 
 
-let texto1 = prompt("Escribe tu nombre")
+let texto1 = prompt("Escribe el nombre de una fruta")
 let texto2 = " "
 
 do{
-    texto2 = prompt ("Escribe un apellido con la inicial de lo que tienes a tu izquierda - (Escribe ESC para finalizar)")
+    texto2 = prompt ("Nombre diferentes caracteristicas de esa fruta - (Escribe ESC para finalizar)")
     resultado = texto1 + " " + texto2
     console.log(resultado)
 }
@@ -60,7 +60,7 @@ if(numero4 > 10){
 
 else{
 for(let i=0; i<numero4 ; i++){
-    console.log("Hola")
+    alert("Hola")
 }
 }
 
