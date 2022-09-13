@@ -1,23 +1,53 @@
+______________________________________________________________________________________________//DESAFIO COMPLEMENTARIO
 
-// //__________________________________________________________________________________SIMULADOR INTERACTIVO CODER 
-let servicios = Number (prompt("Ingrese una cantidad de servicios para sumar"));
-let resultado = 0;
+const familia = [];
+let veces = parseInt(prompt('cuantas personas queres agregar?'));
 
-function sumaServicios (numero){
-    resultado = resultado + numero;
+class Persona {
+  constructor(nombre,apellido, edad, estudioSecundario,saludo){
+    this.nombre = nombre,
+    this.apellido = apellido,
+    this.edad = edad,
+    this.estudioSecundario = estudioSecundario,
+    this.saludo = saludo
+  }
+
+  saludar(){
+    console.log(`${this.saludo} Mi nombre es ${this.nombre}`)
+  }
+
 }
 
-if (servicios > 0){
-    for   (let i=0; i<servicios; i++){
-        let valorServicio = Number (prompt("Ingrese el valor del servicio"));
-        sumaServicios (valorServicio);
+function agregarPersona(){
+  let nombre = prompt('decime tu nombre');
+  let apellido = prompt('decime tu apellido');
+  let edad = parseInt(prompt('decime tu edad'));
+  let saludo = prompt('dame un saludo');
+  let estudios = confirm('tenes estudios secundarios?');
+  let nuevaPersona = new Persona(nombre,apellido,edad,estudios,saludo);
+  familia.push(nuevaPersona);
+}
+
+const saludoFamiliar = () => {
+    for (const persona of familia){
+      persona.saludar()
     }
-}else {
-    alert ("Por favor, ingresa alguna cantidad de servicios para sumar")
-}
-    
+  }
 
-    alert("El valor total de los servicios es " + resultado)
+while(isNaN(veces)){
+  alert('Si no queres agregar personas, pone 0!')
+  veces = parseInt(prompt('cuantas personas queres agregar?'));
+}
+
+if(!isNaN(veces)){
+  for(let i = 1; i <= veces; i++){
+    agregarPersona();
+    console.log(`Se agrego Persona numero ${i}`)
+  }
+} 
+
+console.log(familia)
+
 
 
 
