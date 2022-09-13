@@ -1,4 +1,4 @@
-______________________________________________________________________________________________//DESAFIO COMPLEMENTARIO
+//DESAFIO COMPLEMENTARIO______________________________________________________________________________________________________
 
 const familia = [];
 let veces = parseInt(prompt('cuantas personas queres agregar?'));
