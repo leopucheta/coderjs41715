@@ -2,6 +2,7 @@
 
 
 let contenedor = document.getElementById('favoritos');
+let boton =  document.getElementById('boton');
 
 const favoritos = [];
 const baseDeDatos = [];
@@ -39,6 +40,9 @@ agregarLink('Facebook', 'social')
 
 
 let nombreUsuario = prompt ('Como te llamas?')
+
+
+
 
 const programa = () =>{
   let eleccionCategoria =  parseInt(prompt( nombreUsuario + ' Elige una categoria \n 1- Streaming \n 2- Social '));
@@ -78,12 +82,20 @@ const programa = () =>{
   else{
     alert ('Elige alguna de las 2 opciones anteriores')
   }
-}
+
 
 contenedor.innerHTML = `<p> Hola ${nombreUsuario}, Comenza a agregar favoritos </p>`
 
-favoritos.forEach(element => {
-  let parrafo = document.createElement('p')
-  parrafo.innerHTML = ` Nombre: ${element.nombre} / Categoria: ${element.categoria}  `   
-  contenedor.appendChild(parrafo)
-});
+  favoritos.forEach(element => {
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = ` Nombre: ${element.nombre} / Categoria: ${element.categoria}  `   
+    contenedor.appendChild(parrafo)
+  });
+  
+}
+
+
+boton.addEventListener ("click", programa)
+
+contenedor.innerHTML = `<p> Hola ${nombreUsuario}, Comenza a agregar favoritos </p>`
+
