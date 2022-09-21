@@ -1,6 +1,8 @@
 //1ra Entrega de Proyecto Final__________________________________________________________________________________________
 
 
+let contenedor = document.getElementById('favoritos');
+
 const favoritos = [];
 const baseDeDatos = [];
 
@@ -37,51 +39,51 @@ agregarLink('Facebook', 'social')
 
 
 let nombreUsuario = prompt ('Como te llamas?')
-alert ('Bienvenido a My Social Tree ' + nombreUsuario)
-let confirmFavorito = confirm ('Deseas agregar favoritos?')
 
-while (confirmFavorito){
-let eleccionCategoria =  parseInt(prompt( nombreUsuario + ' Elige una categoria \n 1- Streaming \n 2- Social '));
+const programa = () =>{
+  let eleccionCategoria =  parseInt(prompt( nombreUsuario + ' Elige una categoria \n 1- Streaming \n 2- Social '));
 
 
 
-if (eleccionCategoria == 1){
-
-  let eleccionFavorito =  parseInt(prompt('Elige cual de los servicios de streaming quieres agregar a favoritos \n 1-Netflix \n 2-Disney Plus \n 3-Prime Video'))
-  if (eleccionFavorito == 1){
-    agregarFavorito('Netflix')
-  } else if(eleccionFavorito ==2){
-    agregarFavorito('Disney Plus')
-  } else if(eleccionFavorito ==3){
-    agregarFavorito('Prime Video')
-  } else{
-      alert ('No elegiste una opcion valida')
-  }
-
-}
-
-else if(eleccionCategoria == 2){
-
-  let eleccionFavorito = parseInt(prompt('Elige que redes sociales quieres agregar a favoritos  \n 1-Instagram \n 2-Twitter \n 3-Facebook'))  
-  if (eleccionFavorito ==1){
-      agregarFavorito('Instagram')
-    }  else if(eleccionFavorito ==2){
-      agregarFavorito('Twitter')
-    }  else if(eleccionFavorito ==3){
-      agregarFavorito('Facebook')    
-    }  else{
+  if (eleccionCategoria == 1){
+  
+    let eleccionFavorito =  parseInt(prompt('Elige cual de los servicios de streaming quieres agregar a favoritos \n 1-Netflix \n 2-Disney Plus \n 3-Prime Video'))
+    if (eleccionFavorito == 1){
+      agregarFavorito('Netflix')
+    } else if(eleccionFavorito ==2){
+      agregarFavorito('Disney Plus')
+    } else if(eleccionFavorito ==3){
+      agregarFavorito('Prime Video')
+    } else{
         alert ('No elegiste una opcion valida')
     }
   
   }
-
-else{
-  alert ('Elige alguna de las 2 opciones anteriores')
+  
+  else if(eleccionCategoria == 2){
+  
+    let eleccionFavorito = parseInt(prompt('Elige que redes sociales quieres agregar a favoritos  \n 1-Instagram \n 2-Twitter \n 3-Facebook'))  
+    if (eleccionFavorito ==1){
+        agregarFavorito('Instagram')
+      }  else if(eleccionFavorito ==2){
+        agregarFavorito('Twitter')
+      }  else if(eleccionFavorito ==3){
+        agregarFavorito('Facebook')    
+      }  else{
+          alert ('No elegiste una opcion valida')
+      }
+    
+    }
+  
+  else{
+    alert ('Elige alguna de las 2 opciones anteriores')
+  }
 }
 
-confirmFavorito = confirm ('Deseas seguir agregando favoritos?')
+contenedor.innerHTML = `<p> Hola ${nombreUsuario}, Comenza a agregar favoritos </p>`
 
-}
-
-console.log (favoritos)
-
+favoritos.forEach(element => {
+  let parrafo = document.createElement('p')
+  parrafo.innerHTML = ` Nombre: ${element.nombre} / Categoria: ${element.categoria}  `   
+  contenedor.appendChild(parrafo)
+});
