@@ -1,16 +1,27 @@
-//1ra Entrega de Proyecto Final__________________________________________________________________________________________
+//2da Entrega de Proyecto Final__________________________________________________________________________________________
+
+
+
+
+const addFavBtn = document.getElementById('addFavBtn')
+const login = document.getElementById('login')
+const userWelcome = document.getElementById ('userWelcome')
+const simText = document.getElementById ('simText')
+const container = document.getElementById ('container')
 
 
 let contenedor = document.getElementById('favoritos');
-let boton =  document.getElementById('boton');
+
 
 const favoritos = [];
 const baseDeDatos = [];
 
 class Link {
-  constructor (nombre, categoria){
+  constructor (nombre, categoria, url, img){
   this.nombre = nombre
   this.categoria = categoria
+  this.url = url
+  this.img = img
   }
 }
 
@@ -23,68 +34,94 @@ function agregarLink (nombre, categoria){
 
 function agregarFavorito (nombreFavorito){
   favoritos.push (baseDeDatos.find(element => element.nombre == nombreFavorito))
-  alert ('Favoritos agregados exitosamente')
+    
 }
+ 
+
+
+let  nombreUsuario = '';
+
+function escucharLoginBtn () {
+  nombreUsuario = document.getElementById ('nombreUsuario').value
+  localStorage.setItem ('username', nombreUsuario)
+  userWelcome.innerText = `Bienvenido ${nombreUsuario} `
+  simText.innerText = `Comienza a agregar tus favoritos`
+  }
+
+  function escucharSocialBtn (){
+    
+  }
+
+login.addEventListener ("click", escucharLoginBtn)
+
+
+
+function tresBotones (){
+  const tresBotones = baseDeDatos.filter ( element => element.categoria == 'STREAMING')
+  container.innerHTML = ''
+  tresBotones.forEach (element => {
+  let boton = document.createElement ('button')
+  boton.className = ' streaming btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold'
+  boton.innerText = `${element.nombre}`  
+  let nombre = element.nombre
+  boton.addEventListener('click', () =>{
+    favoritos.push (baseDeDatos.find(element => element.nombre == nombre))    
+    console.log(favoritos)
+    
+  })
+  container.appendChild (boton)
+  })
+ 
+}
+
+
+
+
+
+
+let variableIf = ''
+
+  let eleccionCategoria = () => {
+
+    userWelcome.innerText = ` ${nombreUsuario} `
+    simText.innerText = `Elige en que categoria quieres agregar favoritos`
+    addFavBtn.innerText = `STREAMING`
+    login.innerText = `SOCIAL`
+    login.removeEventListener ('click', escucharLoginBtn)
+    login.addEventListener ('click', () => {
+      variableIf = 'SOCIAL'
+    })
+    addFavBtn.removeEventListener ('click', programa)
+    addFavBtn.addEventListener ('click', () => {
+      tresBotones()
+
+    } )
+   }  
+
+
 
 
 //Dbase
 //streaming
-agregarLink('Disney Plus', 'streaming')
-agregarLink('Netflix', 'streaming' )
-agregarLink('Prime Video', 'streaming')
+agregarLink('Disney Plus', 'STREAMING')
+agregarLink('Netflix', 'STREAMING')
+agregarLink('Prime Video', 'STREAMING')
 
 //social
-agregarLink('Instagram', 'social')
-agregarLink('Twitter', 'social')
-agregarLink('Facebook', 'social')
+agregarLink('Instagram', 'SOCIAL')
+agregarLink('Twitter', 'SOCIAL')
+agregarLink('Linkedin', 'SOCIAL')
 
 
-let nombreUsuario = prompt ('Como te llamas?')
+
+
 
 
 
 
 const programa = () =>{
-  let eleccionCategoria =  parseInt(prompt( nombreUsuario + ' Elige una categoria \n 1- Streaming \n 2- Social '));
 
-
-
-  if (eleccionCategoria == 1){
-  
-    let eleccionFavorito =  parseInt(prompt('Elige cual de los servicios de streaming quieres agregar a favoritos \n 1-Netflix \n 2-Disney Plus \n 3-Prime Video'))
-    if (eleccionFavorito == 1){
-      agregarFavorito('Netflix')
-    } else if(eleccionFavorito ==2){
-      agregarFavorito('Disney Plus')
-    } else if(eleccionFavorito ==3){
-      agregarFavorito('Prime Video')
-    } else{
-        alert ('No elegiste una opcion valida')
-    }
-  
-  }
-  
-  else if(eleccionCategoria == 2){
-  
-    let eleccionFavorito = parseInt(prompt('Elige que redes sociales quieres agregar a favoritos  \n 1-Instagram \n 2-Twitter \n 3-Facebook'))  
-    if (eleccionFavorito ==1){
-        agregarFavorito('Instagram')
-      }  else if(eleccionFavorito ==2){
-        agregarFavorito('Twitter')
-      }  else if(eleccionFavorito ==3){
-        agregarFavorito('Facebook')    
-      }  else{
-          alert ('No elegiste una opcion valida')
-      }
-    
-    }
-  
-  else{
-    alert ('Elige alguna de las 2 opciones anteriores')
-  }
-
-
-contenedor.innerHTML = `<p> Hola ${nombreUsuario}, Comenza a agregar favoritos </p>`
+  eleccionCategoria();
 
   favoritos.forEach(element => {
     let parrafo = document.createElement('p')
@@ -95,7 +132,12 @@ contenedor.innerHTML = `<p> Hola ${nombreUsuario}, Comenza a agregar favoritos <
 }
 
 
-boton.addEventListener ("click", programa)
+addFavBtn.addEventListener ("click", programa)
 
-contenedor.innerHTML = `<p> Hola ${nombreUsuario}, Comenza a agregar favoritos </p>`
 
+let storage = localStorage.getItem ('username')
+
+if (storage){ 
+  userWelcome.innerText = `Bienvenido ${storage} `
+  simText.innerText = `Comienza a agregar tus favoritos`
+}
