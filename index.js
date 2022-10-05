@@ -67,6 +67,21 @@ function tresBotones (){
   boton.addEventListener('click', () =>{
     favoritos.push (baseDeDatos.find(element => element.nombre == nombre))    
     console.log(favoritos)
+    Toastify({
+      text: "FAVORITO AGREGADO EXITOSAMENTE",
+      className: "success",
+      style: {
+        background: "rgb(13, 202, 240)",
+        color: "black",
+        borderRadius: "10000px",
+        textAlign: "center",
+        fontSize: "10px",
+        fontWeight: "bold"
+        
+
+
+      }
+    }).showToast();
     
   })
   container.appendChild (boton)
