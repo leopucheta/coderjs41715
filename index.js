@@ -14,7 +14,7 @@ let contenedor = document.getElementById('favoritos');
 
 
 const favoritos = [];
-const baseDeDatos = [];
+let baseDeDatos = [];
 
 class Link {
   constructor (nombre, categoria, url, img){
@@ -27,10 +27,24 @@ class Link {
 
 
 
-function agregarLink (nombre, categoria){
-  let agregarLink = new Link (nombre, categoria)
-  baseDeDatos.push (agregarLink)
+
+
+//Dbase
+const traerBaseDeDatos = async () =>{
+  try {
+   const respuesta = await fetch('baseDeDatos.json')
+   const resultado = await respuesta.json() 
+   baseDeDatos = resultado
+
+    
+  } catch (e) {
+    console.log(e)    
+  }
 }
+  
+
+
+
 
 function agregarFavorito (nombreFavorito){
   favoritos.push (baseDeDatos.find(element => element.nombre == nombreFavorito))
@@ -46,13 +60,12 @@ function escucharLoginBtn () {
   localStorage.setItem ('username', nombreUsuario)
   userWelcome.innerText = `Bienvenido ${nombreUsuario} `
   simText.innerText = `Comienza a agregar tus favoritos`
+  traerBaseDeDatos()
   }
 
-  function escucharSocialBtn (){
-    
-  }
 
 login.addEventListener ("click", escucharLoginBtn)
+
 
 
 
@@ -116,21 +129,6 @@ let variableIf = ''
 
 
 
-//Dbase
-//streaming
-agregarLink('Disney Plus', 'STREAMING')
-agregarLink('Netflix', 'STREAMING')
-agregarLink('Prime Video', 'STREAMING')
-
-//social
-agregarLink('Instagram', 'SOCIAL')
-agregarLink('Twitter', 'SOCIAL')
-agregarLink('Linkedin', 'SOCIAL')
-
-
-
-
-
 
 
 
@@ -155,4 +153,5 @@ let storage = localStorage.getItem ('username')
 if (storage){ 
   userWelcome.innerText = `Bienvenido ${storage} `
   simText.innerText = `Comienza a agregar tus favoritos`
+  traerBaseDeDatos()
 }
