@@ -166,11 +166,8 @@ if (storage){
     window.location.reload()
     
   })  
-
-  if (storedFavs){
-    document.write (`${storedFavs}`)
-  }
 }
+
 
 
 
