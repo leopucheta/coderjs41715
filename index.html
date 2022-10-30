@@ -19,10 +19,6 @@ integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmV
 
 <body>
 
-
-    
-
-
     <main>
 
     <article>    
@@ -33,16 +29,40 @@ integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmV
                 <p id="simText" class="fs-5 mb-4">Este simulador, servira para poder agregar favoritos, en un principio de una base de datos predeterminada, y luego personalizados por el usuario</p>
               
                 <div id="container" class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                  <button type="button" id="addFavBtn" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">AGREGAR FAVORITOS</button>
-                  <button type="button" id="login" class="btn btn-outline-light btn-lg px-4">INICIAR SESION</button>                  
-                  <input id="nombreUsuario"  type="text" placeholder="Escriba aqui su nombre">
-                  <input type="password" placeholder="Escriba aqui su contraseña">                               
-                </div>
+                  <button type="button" style="display: none;" id="addFavBtn" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">AGREGAR FAVORITOS</button>
+              
+                  <form>
+                                
+                  <input id="nombreUsuario" required  type="text" placeholder="Escriba aqui su nombre">
+                  <input type="password" required placeholder="Escriba aqui su contraseña">  
+                  <button type="submit" id="login" class="btn btn-outline-light btn-lg px-4">INICIAR SESION</button>  
+                  </form>     
+
+                  <button type="button" style="display: none;" id="SOCIAL" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">SOCIAL</button>
+                  <button type="button" style="display: none;" id="STREAMING" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">STREAMING</button>
+                  <button type="button" style="display: none;" id="volver" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">VOLVER A CATEGORIAS</button>
+                  
+                  <button type="button" style="display: none;" id="logoutBtn" class="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold">CERRAR SESION</button>
+               
+              </div>
              
             </div>
             </div>
           </div>
+
+          
     </article>  
+
+    <div id="botonesCategoria">
+
+    </div>
+
+
+    <div id="favContainer">
+
+    </div>
+
+
 
 
     </main>
@@ -54,11 +74,16 @@ integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmV
 <!-- Toastify -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-<!-- Javascript -->
+<!-- Javascript
+
+-->
     <script src="./index.js"></script>
 </body>
 
 
 </html>
 
+  <!-- <a href="http://www.google.com">
+    <img src="./assets/webicons/social/" alt="">
+    </a> -->
 

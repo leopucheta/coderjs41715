@@ -9,4 +9,28 @@ body {
 
 .border-radius {
   border-radius: 50%;
+}
+
+div#botonesCategoria {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+div#botonesCategoria button {
+  width: 25vw;
+  margin: 1vw;
+  padding: 1vw;
+  right: 0 auto;
+}
+
+div#favContainer {
+  display: flex;
+  justify-content: space-between;
+}
+div#favContainer img {
+  width: 9vw;
+  border-radius: 10vw;
+  padding: 2vw;
 }/*# sourceMappingURL=stylesheet.css.map */
