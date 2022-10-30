@@ -174,6 +174,7 @@ if (storage){
 
 
 
+
 //Crear elementos una vez que se pushean al Array de favoritos ✅
 // que los favoritos sean clickeables ✅
 //Poder usar SOCIAL ✅
