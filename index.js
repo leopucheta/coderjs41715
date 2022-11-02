@@ -1,11 +1,11 @@
 // Entrega de Proyecto Final____________________LEONARDO PUCHETA______________________________________________________________
 
-const addFavBtn = document.getElementById('addFavBtn')
-const login = document.getElementById('login')
-const userWelcome = document.getElementById ('userWelcome')
-const simText = document.getElementById ('simText')
-const container = document.getElementById ('container')
-const favContainer = document.getElementById('favContainer')
+const addFavBtn = document.getElementById('addFavBtn');
+const login = document.getElementById('login');
+const userWelcome = document.getElementById ('userWelcome');
+const simText = document.getElementById ('simText');
+const container = document.getElementById ('container');
+const favContainer = document.getElementById('favContainer');
 
 
 let contenedor = document.getElementById('favoritos');
@@ -16,19 +16,19 @@ let baseDeDatos = [];
 
 class Link {
   constructor (nombre, categoria, img, url){
-  this.nombre = nombre
-  this.categoria = categoria
-  this.img = img
-  this.url = url
+  this.nombre = nombre;
+  this.categoria = categoria;
+  this.img = img;
+  this.url = url;
   }
 }
 
 //Dbase
 const traerBaseDeDatos = async () =>{
   try {
-   const respuesta = await fetch('baseDeDatos.json')
-   const resultado = await respuesta.json()
-   baseDeDatos = resultado
+   const respuesta = await fetch('baseDeDatos.json');
+   const resultado = await respuesta.json();
+   baseDeDatos = resultado;
 
 
   } catch (e) {
@@ -39,13 +39,13 @@ const traerBaseDeDatos = async () =>{
 
 //por cada elemento pusheado en favoritos, tiene que crear una imagen con un link en algun lado del container.
 function pintarFavoritos () {
-  favContainer.innerHTML = ""
+  favContainer.innerHTML = "";
   favoritos.forEach(element => {  
-    const favoritoPintado = document.createElement('a') 
-    favoritoPintado.setAttribute ('href', `${element.url} `)  
-    favoritoPintado.setAttribute ('target', '_blank')      
+    const favoritoPintado = document.createElement('a'); 
+    favoritoPintado.setAttribute ('href', `${element.url} `);
+    favoritoPintado.setAttribute ('target', '_blank');      
     favoritoPintado.innerHTML = ` <img src="${element.img}">  `
-    favContainer.appendChild(favoritoPintado)
+    favContainer.appendChild(favoritoPintado);
  
     
   });
@@ -54,43 +54,43 @@ function pintarFavoritos () {
 let  nombreUsuario = '';
 
 function escucharLoginBtn () {
-  nombreUsuario = document.getElementById ('nombreUsuario').value
-  localStorage.setItem ('username', nombreUsuario)
-  userWelcome.innerText = `Bienvenido ${nombreUsuario} `
-  simText.innerText = `Comienza a agregar tus favoritos`
-  traerBaseDeDatos()
-  document.querySelector('form').style.display="none"
+  nombreUsuario = document.getElementById ('nombreUsuario').value;
+  localStorage.setItem ('username', nombreUsuario);
+  userWelcome.innerText = `Bienvenido ${nombreUsuario} `;
+  simText.innerText = `Comienza a agregar tus favoritos`;
+  traerBaseDeDatos();
+  document.querySelector('form').style.display="none";
   
   
   
   }
 
 
-document.querySelector('form').addEventListener ("submit", escucharLoginBtn)
+document.querySelector('form').addEventListener ("submit", escucharLoginBtn);
 
 
 function tresBotones (categoria){
 
-  document.querySelector ('#volver').style.display="block"
+  document.querySelector ('#volver').style.display="block";
   document.querySelector ('#volver').addEventListener ('click', ()=>{
-    programa()
+    programa();
   })
 
 
-  document.querySelector ('#SOCIAL').style.display='none'
-  document.querySelector ('#STREAMING').style.display='none'
-  const tresBotonesStreaming = baseDeDatos.filter ( element => element.categoria == categoria)
-  simText.innerText = `Selecciona tus favoritos de la categoria`
-  document.querySelector ('#botonesCategoria').innerHTML=""
+  document.querySelector ('#SOCIAL').style.display='none';
+  document.querySelector ('#STREAMING').style.display='none';
+  const tresBotonesStreaming = baseDeDatos.filter ( element => element.categoria == categoria);
+  simText.innerText = `Selecciona tus favoritos de la categoria`;
+  document.querySelector ('#botonesCategoria').innerHTML="";
   tresBotonesStreaming.forEach (element => {
-  let boton = document.createElement ('button')
-  boton.className = ' streaming btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold'
-  boton.innerText = `${element.nombre}`
-  let nombre = element.nombre
+  let boton = document.createElement ('button');
+  boton.className = ' streaming btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold';
+  boton.innerText = `${element.nombre}`;
+  let nombre = element.nombre;
   boton.addEventListener('click', () =>{
-    favoritos.push (baseDeDatos.find(element => element.nombre == nombre))
-    pintarFavoritos()
-    localStorage.setItem('favoritos',  JSON.stringify(favoritos))
+    favoritos.push (baseDeDatos.find(element => element.nombre == nombre));
+    pintarFavoritos();
+    localStorage.setItem('favoritos',  JSON.stringify(favoritos));
     Toastify({
       text: "FAVORITO AGREGADO EXITOSAMENTE",
       className: "success",
@@ -106,64 +106,64 @@ function tresBotones (categoria){
   })
 
   
-  document.querySelector ('#botonesCategoria').appendChild (boton)
+  document.querySelector ('#botonesCategoria').appendChild (boton);
   })
 
 }
 
   let eleccionCategoria = () => {
     login.addEventListener ('click', () => {
-        tresBotones('SOCIAL')
+        tresBotones('SOCIAL');
     })
     addFavBtn.removeEventListener ('click', programa)
     addFavBtn.addEventListener ('click', () => {
-      tresBotones('STREAMING')
-      localStorage.getItem
+      tresBotones('STREAMING');
+      localStorage.getItem;
     } )
    }
 
 
 const programa = () =>{  
-  userWelcome.innerText = ` ${storage} `
-  simText.innerText = `Elige en que categoria quieres agregar favoritos`
-  addFavBtn.style.display ='none'
+  userWelcome.innerText = ` ${storage} `;
+  simText.innerText = `Elige en que categoria quieres agregar favoritos`;
+  addFavBtn.style.display ='none';
 
-  document.querySelector ('#SOCIAL').style.display='block'
+  document.querySelector ('#SOCIAL').style.display='block';
   document.querySelector ("#SOCIAL").addEventListener ('click', ()=>{
-    tresBotones('SOCIAL')
+    tresBotones('SOCIAL');
   })
 
-  document.querySelector ('#STREAMING').style.display='block'
+  document.querySelector ('#STREAMING').style.display='block';
   document.querySelector ("#STREAMING").addEventListener ('click', ()=>{
-    tresBotones('STREAMING')
+    tresBotones('STREAMING');
 
 
   })
-  document.querySelector ('#volver').style.display='none'
-  document.querySelector ('#botonesCategoria').innerHTML=""
+  document.querySelector ('#volver').style.display='none';
+  document.querySelector ('#botonesCategoria').innerHTML="";
 
 
 }
-addFavBtn.addEventListener ("click", programa)
+addFavBtn.addEventListener ("click", programa);
 
 
 
-let storage = localStorage.getItem ('username')
-let storedFavs = localStorage.getItem ('favoritos')
+let storage = localStorage.getItem ('username');
+let storedFavs = localStorage.getItem ('favoritos');
 
 if (storage){
 
 
-  userWelcome.innerText = `Bienvenido ${storage} `
-  simText.innerText = `Comienza a agregar tus favoritos`
-  traerBaseDeDatos()
-  document.querySelector('form').style.display="none"
-  addFavBtn.style.display="block"
-  document.querySelector ('#logoutBtn').style.display="block"
+  userWelcome.innerText = `Bienvenido ${storage} `;
+  simText.innerText = `Comienza a agregar tus favoritos`;
+  traerBaseDeDatos();
+  document.querySelector('form').style.display="none";
+  addFavBtn.style.display="block";
+  document.querySelector ('#logoutBtn').style.display="block";
   document.querySelector ('#logoutBtn').addEventListener('click', ()=>{
-    localStorage.removeItem ('username')
-    localStorage.removeItem ('favoritos')
-    window.location.reload()
+    localStorage.removeItem ('username');
+    localStorage.removeItem ('favoritos');
+    window.location.reload();
     
   })  
 }
